@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TeknolojiKovaniWebApi.Domain.Device.DTOs;
+using TeknolojiKovaniWebApi.Domain.Device;
 
 namespace TeknolojiKovaniWebApi.Domain.Device
 {

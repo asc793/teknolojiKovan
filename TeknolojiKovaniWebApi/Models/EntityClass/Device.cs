@@ -17,6 +17,9 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         [ForeignKey("ProfileID")]
         public Profile Profile { get; set; }
 
-        
+        public int UserID { get; set; }
+        [ForeignKey("UserID")]
+        public User User { get; set; }
+
     }
 }
