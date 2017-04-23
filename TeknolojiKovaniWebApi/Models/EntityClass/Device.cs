@@ -19,7 +19,7 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
 
         public int UserID { get; set; }
         [ForeignKey("UserID")]
-        public User User { get; set; }
+        public Users User { get; set; }
 
     }
 }
