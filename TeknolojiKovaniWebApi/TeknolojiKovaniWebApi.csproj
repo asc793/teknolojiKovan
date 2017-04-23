@@ -131,7 +131,7 @@
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
-    <Compile Include="Domain\Alarm\DTOs\FiredAlarmDto.cs" />
+    <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
     <Compile Include="Domain\Authentication\DTOs\ValidateToken.cs" />

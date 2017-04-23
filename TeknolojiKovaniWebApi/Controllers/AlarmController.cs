@@ -12,7 +12,7 @@ namespace TeknolojiKovaniWebApi.Controllers
     {
         [Route("FireAlarm")]
         [HttpPost]
-        public IHttpActionResult FireAlarm(FiredAlarmDto alarm)
+        public IHttpActionResult FireAlarm(AlarmFireDto alarm)
         {
             return Ok();
         }
