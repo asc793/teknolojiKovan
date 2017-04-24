@@ -7,11 +7,7 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
 {
     public class Profile
     {
-        public int ProfileID { get; set; }
-        public string ProfileName { get; set; }
-
-        
-
-
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

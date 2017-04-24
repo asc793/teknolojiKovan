@@ -12,8 +12,11 @@ namespace TeknolojiKovaniWebApi
     {
         public DbSet<Alarm> Alarm { get; set; }
         public DbSet<Device> Device { get; set; }
+        public DbSet<DeviceValue> DeviceValue { get; set; }
+        public DbSet<TeknolojiKovaniWebApi.Models.EntityClass.Environment> Environment { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Property> Property { get; set; }
+        public DbSet<Users> Users { get; set; }
         
         public tKovanContext():base()
         {

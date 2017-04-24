@@ -19,15 +19,10 @@ namespace TeknolojiKovaniWebApi.App_Start
                 throw new Exception("Token Required");
             }
 
-            ValidateToken validateToken = new ValidateToken();
+            Guid? validateToken = null;
             try
             {
-                validateToken = new ValidateToken()
-                                {
-                                    DeviceName = token.Value.FirstOrDefault().Split('_')[0]
-                                    ,
-                                    Token = token.Value.FirstOrDefault().Split('_')[1]
-                                };
+                validateToken = Guid.Parse(token.Value.FirstOrDefault());
             }
             catch (Exception)
             {
@@ -37,7 +32,7 @@ namespace TeknolojiKovaniWebApi.App_Start
 
             AuthenticationDomain authDomain = new AuthenticationDomain();
 
-            authDomain.ValidateToken(validateToken);
+            authDomain.ValidateToken(validateToken.Value);
 
 
             base.OnActionExecuting(actionContext);

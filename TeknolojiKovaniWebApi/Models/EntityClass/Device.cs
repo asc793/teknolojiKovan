@@ -8,18 +8,18 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
 {
     public class Device
     {
-        public int DeviceID { get; set; }
-        public string DeviceName { get; set; }
-        public string DeviceGuid { get; set; }
-        public string DeviceMacNo { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string MacNo { get; set; }
         public string CurrentToken { get; set; }
-        public int ProfileID { get; set; }
-        [ForeignKey("ProfileID")]
+        public int ProfileId { get; set; }
+        [ForeignKey("ProfileId")]
         public Profile Profile { get; set; }
-
-        public int UserID { get; set; }
-        [ForeignKey("UserID")]
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
         public Users User { get; set; }
+        public Environment Environment { get; set; }
+        public int? EnvironmentId { get; set; }
 
     }
 }

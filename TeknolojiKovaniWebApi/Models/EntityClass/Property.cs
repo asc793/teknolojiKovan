@@ -7,9 +7,11 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
 {
     public class Property
     {
-        public int PropertyID { get; set; }
-        public string PropertyName { get; set; }
-        public PropertyType PropertyType { get; set; }
+        public int Id { get; set; }
+        public Profile Profile { get; set; }
+        public int ProfileId { get; set; }
+        public string Name { get; set; }
+        public PropertyType Type { get; set; }
         
     }
 }

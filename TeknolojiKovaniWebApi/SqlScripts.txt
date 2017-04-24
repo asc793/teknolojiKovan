@@ -1,0 +1,28 @@
+﻿--truncate----------------------------------------
+truncate table Alarm
+truncate table Device
+truncate table DeviceValue
+truncate table Environment
+truncate table Profile
+truncate table Property
+truncate table Users
+
+--drop----------------------------------------
+drop table Property
+drop table Alarm
+drop table DeviceValue
+drop table Device
+drop table Environment
+drop table Profile
+drop table Users
+truncate table __MigrationHistory
+
+--init inserts----------------------------------------
+
+insert into profile values('dht11 profile')
+insert into property values(1,'temp',1)
+insert into property values(1,'humidity',1)
+insert into environment values ('env1')
+insert into users values ('usr1','123','asd@asd.com','5555555555')
+insert into device values('62C7DE01-574E-4938-9094-28CA1C6F756F','dev1','18:fe:34:9e:61:98','A27E1A03-67A2-4032-B091-56DC6F52FE7F',1,1,1)
+------------------------------------------------------

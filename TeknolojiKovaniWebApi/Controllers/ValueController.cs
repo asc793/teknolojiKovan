@@ -4,15 +4,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TeknolojiKovaniWebApi.Domain.Values;
+using TeknolojiKovaniWebApi.Domain.Values.DTOs.External;
 
 namespace TeknolojiKovaniWebApi.Controllers
 {
     public class ValueController : ApiController
     {
-        [Route("Devices/{deviceName}/Values/{propertyName}")]
+        [Route("Devices/{deviceId:guid}/Values/{propertyName}")]
         [HttpPost]
-        public IHttpActionResult FireAlarm()
+        public IHttpActionResult SaveValue(Guid deviceId,string propertyName, Value value)
         {
+            value.DeviceId = deviceId;
+            value.PropertyName = propertyName;
+            ValuesDomain valuesDomain = new ValuesDomain();
+            valuesDomain.SaveValue(value);
             return Ok();
         }
     }

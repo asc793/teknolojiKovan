@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
 
 namespace TeknolojiKovaniWebApi.Models.EntityClass
 {
-    public enum PropertyType
+    public class Environment
     {
-        Numeric = 1,
-        Text = 2
+        public int Id { get; set; }
+        public string Name { get; set; }
+
     }
 }

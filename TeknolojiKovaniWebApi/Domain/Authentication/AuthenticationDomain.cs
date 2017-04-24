@@ -11,7 +11,7 @@ namespace TeknolojiKovaniWebApi.Domain.Authentication
         public string GenerateDeviceToken(GetToken token)
         {
             tKovanContext ctx = new tKovanContext();
-            Models.EntityClass.Device dev = ctx.Device.FirstOrDefault(i => i.DeviceGuid == token.DeviceGuid && i.DeviceMacNo == token.Macno);
+            Models.EntityClass.Device dev = ctx.Device.FirstOrDefault(i => i.Id.ToString() == token.DeviceGuid && i.MacNo == token.Macno);
 
             if (dev != null)
             {
@@ -27,21 +27,15 @@ namespace TeknolojiKovaniWebApi.Domain.Authentication
             }
         }
 
-        public void ValidateToken(ValidateToken token)
+        public void ValidateToken(Guid token)
         {
             tKovanContext ctx = new tKovanContext();
-            Models.EntityClass.Device dev = ctx.Device.FirstOrDefault(i => i.DeviceName == token.DeviceName);
+            Models.EntityClass.Device dev = ctx.Device.FirstOrDefault(i => i.CurrentToken == token.ToString());
 
             if (dev == null)
             {
-                throw new Exception("Device not found");
-            }
-
-            if (dev.CurrentToken != token.Token)
-            {
                 throw new Exception("Token invalid");
             }
-
         }
     }
 }
