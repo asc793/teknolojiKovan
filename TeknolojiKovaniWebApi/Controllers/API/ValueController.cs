@@ -7,7 +7,7 @@ using System.Web.Http;
 using TeknolojiKovaniWebApi.Domain.Values;
 using TeknolojiKovaniWebApi.Domain.Values.DTOs.External;
 
-namespace TeknolojiKovaniWebApi.Controllers
+namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class ValueController : ApiController
     {

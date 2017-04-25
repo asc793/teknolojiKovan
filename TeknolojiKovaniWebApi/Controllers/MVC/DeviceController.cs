@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace TeknolojiKovaniWebApi.Controllers
+namespace TeknolojiKovaniWebApi.Controllers.MVC
 {
-    public class HomeController : Controller
+    public class DeviceController : Controller
     {
-        // GET: Home
+        // GET: Device
         public ActionResult Index()
         {
             return View();
         }
+
+       
     }
 }

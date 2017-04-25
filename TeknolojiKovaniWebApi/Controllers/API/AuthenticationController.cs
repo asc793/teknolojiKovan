@@ -7,7 +7,7 @@ using System.Web.Http;
 using TeknolojiKovaniWebApi.Domain.Authentication;
 using TeknolojiKovaniWebApi.Domain.Authentication.DTOs;
 
-namespace TeknolojiKovaniWebApi.Controllers
+namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class AuthenticationController : ApiController
     {

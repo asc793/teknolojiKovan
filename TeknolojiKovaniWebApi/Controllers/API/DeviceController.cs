@@ -8,7 +8,7 @@ using System.Web.Http.Filters;
 using System.Web.Routing;
 using TeknolojiKovaniWebApi.Models.EntityClass;
 
-namespace TeknolojiKovaniWebApi.Controllers
+namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class DeviceController : ApiController
     {

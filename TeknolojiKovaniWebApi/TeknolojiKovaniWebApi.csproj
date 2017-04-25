@@ -128,12 +128,13 @@
     <Compile Include="App_Start\AuthenticationFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AlarmController.cs" />
-    <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\DeviceController.cs" />
-    <Compile Include="Controllers\EnvironmentController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValueController.cs" />
+    <Compile Include="Controllers\API\AlarmController.cs" />
+    <Compile Include="Controllers\API\AuthenticationController.cs" />
+    <Compile Include="Controllers\API\DeviceController.cs" />
+    <Compile Include="Controllers\API\EnvironmentController.cs" />
+    <Compile Include="Controllers\MVC\DeviceController.cs" />
+    <Compile Include="Controllers\MVC\HomeController.cs" />
+    <Compile Include="Controllers\API\ValueController.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Device\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704252011056_init.resx">

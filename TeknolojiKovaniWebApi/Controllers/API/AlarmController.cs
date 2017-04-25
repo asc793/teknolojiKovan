@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using TeknolojiKovaniWebApi.Domain.Alarm.DTOs;
 
-namespace TeknolojiKovaniWebApi.Controllers
+namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class AlarmController : ApiController
     {
