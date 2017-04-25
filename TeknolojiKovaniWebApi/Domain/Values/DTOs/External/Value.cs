@@ -9,7 +9,7 @@ namespace TeknolojiKovaniWebApi.Domain.Values.DTOs.External
     {
         public Guid DeviceId { get; set; }
         public string PropertyName { get; set; }
-        public float Value { get; set; }
+        public decimal Value { get; set; }
         public DateTime DataDeviceTime { get; set; }
     }
 }

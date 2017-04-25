@@ -9,11 +9,13 @@ Supported Sensor Types:
   1: DHT11
 */
 
-char* wifiSSID="SUPERONLINE_WiFi_0510";
-char* wifiPassword="7993.ahmet.ceren";
+/*char* wifiSSID="SUPERONLINE_WiFi_0510";
+char* wifiPassword="7993.ahmet.ceren";*/
+char* wifiSSID="Zion";
+char* wifiPassword="4FcB2A5C123Ad";
 String deviceGuid="62C7DE01-574E-4938-9094-28CA1C6F756F";
 const char* macno="18:fe:34:9e:61:98";
-String baseUrl = "http://192.168.1.4/TeknolojiKovaniWebApi";
+String baseUrl = "http://192.168.1.37/TeknolojiKovaniWebApi";
 
 void setup() {
   
@@ -33,21 +35,42 @@ ESP.deepSleep(30 * 1000000);
   char* json = GetConfig();
 /*GetConfig End*/
 
-/*GetSensorValues Start*/
   JsonObject& root = jsonBuffer.parseObject(json);
 
   for(int i =0;i<root["sensorconfig"].size();i++)
   {
+      /*GetSensorValues Start*/
       String val = GetSensorValue(root["sensorconfig"][i]["pinnumber"],root["sensorconfig"][i]["sensorType"]);
       CheckAlarms(val,root["sensorconfig"][i]["alarms"],root["sensorconfig"][i]["sensorType"]);
+      /*GetSensorValues End*/
+      
       /*SendSensorValues Start*/
       SendSensorValue(root["sensorconfig"][i]["pinnumber"],root["sensorconfig"][i]["sensorType"],val);
       /*SendSensorValues End*/
   }
-/*GetSensorValues End*/
 
-  
+  /*ExecuteCommands Start*/
+  ExecuteCommands(root["commands"]);
+  /*ExecuteCommands End*/
 
+  int sleepSeconds=root["sendinterval"];
+  ESP.deepSleep(30 * 1000000);
+
+}
+
+void ExecuteCommands(String commads)
+{
+    DynamicJsonBuffer jsonBuffer;
+    JsonArray& commandArray=jsonBuffer.parseArray(commads);
+
+    for(int i = 0; i<commandArray.size(); i++)
+    {
+      if(commandArray[i]=="test")
+      {
+         Serial.println("command test");
+      }  
+    }
+    
 }
 
 String SendSensorValue(int pinNumber,int sensorType,String val){
@@ -58,12 +81,12 @@ String SendSensorValue(int pinNumber,int sensorType,String val){
           JsonObject& valObj = jsonBuffer.parseObject(val);
           
           String val = valObj["temp"];
-          String valueToPost = "{\"ValueString\":\""+val+"\"}";
+          String valueToPost = "{\"Value\":"+val+"}";
           String url = "/Devices/"+deviceGuid+"/values/temp";
           HttpRequestOld(url,valueToPost,"post");
           
           String val1 = valObj["humidity"];
-          String valueToPost1 = "{\"ValueString\":\""+val1+"\"}";
+          String valueToPost1 = "{\"Value\":"+val1+"}";
           String url1 = "/Devices/"+deviceGuid+"/values/humidity";
           HttpRequestOld(url1,valueToPost1,"post");
     break;
@@ -86,7 +109,7 @@ void ConnectWifi(){
     Serial.println(String( WiFi.status()));
 }
 char* GetConfig(){
- return "{\"sensorconfig\": [{\"sensorType\":1,\"pinnumber\": 12,\"readinterval\": 10,\"sendinterval\": 10,\"alarms\": [{\"id\":1,\"side\": \"onserver\", \"property\":\"temp\",\"type\": \"email\",\"level\": \"1\",\"min\": 0,\"max\": 3}]}]}";
+ return "{\"commands\":[\"test\"],\"readinterval\": 10,\"sendinterval\": 10, \"sensorconfig\": [{\"sensorType\":1,\"pinnumber\": 12,\"alarms\": [{\"id\":1,\"side\": \"onserver\", \"property\":\"temp\",\"type\": \"email\",\"level\": \"1\",\"min\": 0,\"max\": 3}]}]}";
 }
 
 String GetSensorValue(int pinNumber,int sensorType){

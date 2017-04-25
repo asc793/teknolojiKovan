@@ -52,17 +52,11 @@ namespace TeknolojiKovaniWebApi.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        UserId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Profile",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Users",
@@ -73,6 +67,15 @@ namespace TeknolojiKovaniWebApi.Migrations
                         Password = c.String(),
                         Email = c.String(),
                         PhoneNumber = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Profile",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -96,30 +99,23 @@ namespace TeknolojiKovaniWebApi.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DeviceId = c.Guid(nullable: false),
                         PropertyId = c.Int(nullable: false),
-                        Value = c.Single(nullable: false),
+                        Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                         DataDeviceTime = c.DateTime(nullable: false),
                         DataServerTime = c.DateTime(nullable: false),
                         UserId = c.Int(nullable: false),
                         EnvironmentId = c.Int(nullable: false),
-                        Users_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Device", t => t.DeviceId)
-                .ForeignKey("dbo.Environment", t => t.EnvironmentId)
                 .ForeignKey("dbo.Property", t => t.PropertyId)
-                .ForeignKey("dbo.Users", t => t.Users_Id)
                 .Index(t => t.DeviceId)
-                .Index(t => t.PropertyId)
-                .Index(t => t.EnvironmentId)
-                .Index(t => t.Users_Id);
+                .Index(t => t.PropertyId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.DeviceValue", "Users_Id", "dbo.Users");
             DropForeignKey("dbo.DeviceValue", "PropertyId", "dbo.Property");
-            DropForeignKey("dbo.DeviceValue", "EnvironmentId", "dbo.Environment");
             DropForeignKey("dbo.DeviceValue", "DeviceId", "dbo.Device");
             DropForeignKey("dbo.Alarm", "PropertyId", "dbo.Property");
             DropForeignKey("dbo.Property", "ProfileId", "dbo.Profile");
@@ -127,11 +123,11 @@ namespace TeknolojiKovaniWebApi.Migrations
             DropForeignKey("dbo.Device", "UserId", "dbo.Users");
             DropForeignKey("dbo.Device", "ProfileId", "dbo.Profile");
             DropForeignKey("dbo.Device", "EnvironmentId", "dbo.Environment");
-            DropIndex("dbo.DeviceValue", new[] { "Users_Id" });
-            DropIndex("dbo.DeviceValue", new[] { "EnvironmentId" });
+            DropForeignKey("dbo.Environment", "UserId", "dbo.Users");
             DropIndex("dbo.DeviceValue", new[] { "PropertyId" });
             DropIndex("dbo.DeviceValue", new[] { "DeviceId" });
             DropIndex("dbo.Property", new[] { "ProfileId" });
+            DropIndex("dbo.Environment", new[] { "UserId" });
             DropIndex("dbo.Device", new[] { "EnvironmentId" });
             DropIndex("dbo.Device", new[] { "UserId" });
             DropIndex("dbo.Device", new[] { "ProfileId" });
@@ -139,8 +135,8 @@ namespace TeknolojiKovaniWebApi.Migrations
             DropIndex("dbo.Alarm", new[] { "DeviceId" });
             DropTable("dbo.DeviceValue");
             DropTable("dbo.Property");
-            DropTable("dbo.Users");
             DropTable("dbo.Profile");
+            DropTable("dbo.Users");
             DropTable("dbo.Environment");
             DropTable("dbo.Device");
             DropTable("dbo.Alarm");

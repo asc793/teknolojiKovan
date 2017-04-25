@@ -14,7 +14,7 @@
     <RootNamespace>TeknolojiKovaniWebApi</RootNamespace>
     <AssemblyName>TeknolojiKovaniWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -139,6 +139,7 @@
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
     <Compile Include="Domain\Device\DeviceDomain.cs" />
+    <Compile Include="Domain\Device\DTOs\DeviceRead.cs" />
     <Compile Include="Domain\Profile\DTOs\ProfileSave.cs" />
     <Compile Include="Domain\Profile\DTOs\PropertyRead.cs" />
     <Compile Include="Domain\Profile\ProfileDomain.cs" />
@@ -148,9 +149,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704252011056_init.cs" />
-    <Compile Include="Migrations\201704252011056_init.Designer.cs">
-      <DependentUpon>201704252011056_init.cs</DependentUpon>
+    <Compile Include="Migrations\201704252107294_init.cs" />
+    <Compile Include="Migrations\201704252107294_init.Designer.cs">
+      <DependentUpon>201704252107294_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EntityClass\Alarm.cs" />
@@ -186,8 +187,8 @@
     <Folder Include="Views\Device\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704252011056_init.resx">
-      <DependentUpon>201704252011056_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704252107294_init.resx">
+      <DependentUpon>201704252107294_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -201,7 +202,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25657</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
