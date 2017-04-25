@@ -30,8 +30,18 @@ namespace TeknolojiKovaniWebApi.Domain.Users
 
         internal DTOs.External.Users Login(DTOs.External.Users User)
         {
-            DTOs.External.Users users = new DTOs.External.Users();
-            
+            tKovanContext ctx = new tKovanContext();
+            Models.EntityClass.Users eUsers = ctx.Users.Where(x => x.UserName == User.UserName && x.Password == User.Password).FirstOrDefault();
+
+            if (eUsers != null)
+            {
+                User.Id = eUsers.Id;
+                User.UserName = eUsers.UserName;
+                User.Password = eUsers.Password;
+                User.Email = eUsers.Email;
+                User.PhoneNumber = eUsers.PhoneNumber;
+            }
+            return User;
         }
     }
 }

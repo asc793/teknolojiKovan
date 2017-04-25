@@ -14,9 +14,29 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             return View();
         }
         [HttpPost]
-        public ActionResult Login()
+        public ActionResult Login(Domain.Users.DTOs.External.Users User)
         {
-            return View();
+
+            try
+            {
+                Domain.Users.UsersDomain ud = new Domain.Users.UsersDomain();
+                Domain.Users.DTOs.External.Users gUser = ud.Login(User);
+
+
+                HttpCookie cookie = new HttpCookie("UserCookie");
+                cookie.Values["Id"] = gUser.Id.ToString();
+                cookie.Values["UserName"] = gUser.UserName.ToString();
+                this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+
+                Session["KullaniciBilgileri"] = gUser;
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
+            
         }
 
 
