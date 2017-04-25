@@ -1,0 +1,221 @@
+﻿#include <ESP8266HTTPClient.h>
+#include <ESP8266WiFi.h>
+#include <dht11.h>
+#include <ArduinoJson.h>
+
+dht11 DHT11;
+/*
+Supported Sensor Types:
+  1: DHT11
+*/
+
+char* wifiSSID="SUPERONLINE_WiFi_0510";
+char* wifiPassword="7993.ahmet.ceren";
+String deviceGuid="62C7DE01-574E-4938-9094-28CA1C6F756F";
+const char* macno="18:fe:34:9e:61:98";
+String baseUrl = "http://192.168.1.4/TeknolojiKovaniWebApi";
+
+void setup() {
+  
+  /*GetConfig();
+  GetSensorValues();
+  SendSensorValues();
+  ExecuteCommands();
+  Sleep();
+  
+sendValues();
+ESP.deepSleep(30 * 1000000);
+*/  
+  ConnectWifi();
+  
+/*GetConfig Start*/
+  DynamicJsonBuffer jsonBuffer;
+  char* json = GetConfig();
+/*GetConfig End*/
+
+/*GetSensorValues Start*/
+  JsonObject& root = jsonBuffer.parseObject(json);
+
+  for(int i =0;i<root["sensorconfig"].size();i++)
+  {
+      String val = GetSensorValue(root["sensorconfig"][i]["pinnumber"],root["sensorconfig"][i]["sensorType"]);
+      CheckAlarms(val,root["sensorconfig"][i]["alarms"],root["sensorconfig"][i]["sensorType"]);
+      /*SendSensorValues Start*/
+      SendSensorValue(root["sensorconfig"][i]["pinnumber"],root["sensorconfig"][i]["sensorType"],val);
+      /*SendSensorValues End*/
+  }
+/*GetSensorValues End*/
+
+  
+
+}
+
+String SendSensorValue(int pinNumber,int sensorType,String val){
+  switch(sensorType)
+  {
+    case 1://dht11
+          DynamicJsonBuffer jsonBuffer;
+          JsonObject& valObj = jsonBuffer.parseObject(val);
+          
+          String val = valObj["temp"];
+          String valueToPost = "{\"ValueString\":\""+val+"\"}";
+          String url = "/Devices/"+deviceGuid+"/values/temp";
+          HttpRequestOld(url,valueToPost,"post");
+          
+          String val1 = valObj["humidity"];
+          String valueToPost1 = "{\"ValueString\":\""+val1+"\"}";
+          String url1 = "/Devices/"+deviceGuid+"/values/humidity";
+          HttpRequestOld(url1,valueToPost1,"post");
+    break;
+  }
+}
+
+void loop() {
+
+}
+
+void ConnectWifi(){
+    Serial.begin(115200);
+    WiFi.begin(wifiSSID, wifiPassword);
+  
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.println("Waiting for connection");
+    }
+      
+    Serial.println(String( WiFi.status()));
+}
+char* GetConfig(){
+ return "{\"sensorconfig\": [{\"sensorType\":1,\"pinnumber\": 12,\"readinterval\": 10,\"sendinterval\": 10,\"alarms\": [{\"id\":1,\"side\": \"onserver\", \"property\":\"temp\",\"type\": \"email\",\"level\": \"1\",\"min\": 0,\"max\": 3}]}]}";
+}
+
+String GetSensorValue(int pinNumber,int sensorType){
+  switch(sensorType)
+  {
+    case 1://dht11
+        DHT11.attach(pinNumber);
+        int chk = DHT11.read();
+        int hum=-1;
+        int temp = -1;
+          switch (chk)
+          {
+            case 0:
+            hum = DHT11.humidity;
+            temp = DHT11.temperature;
+            break;
+            case -1: Serial.println("Checksum error"); break;
+            case -2: Serial.println("Time out error"); break;
+            default: Serial.println("Unknown error"); break;
+          }
+          
+        return "{\"temp\":"+String(temp)+",\"humidity\":"+String(hum)+"}";
+    break;
+  }
+}
+
+void CheckAlarms(String values,String alarms,int sensorType)
+{
+  DynamicJsonBuffer jsonBuffer;
+  JsonArray& alarmArray=jsonBuffer.parseArray(alarms);
+  JsonObject& alarmObject = jsonBuffer.createObject();
+  JsonObject& valuesJson = jsonBuffer.parseObject(values);
+  int val;
+  
+  for(int i = 0; i<alarmArray.size(); i++)
+  {
+      alarmObject["alarmid"]=alarmArray[i]["id"];
+
+      switch(sensorType)
+      {
+        case 1://dht11
+          String propertyName = alarmArray[i]["property"];
+          val = valuesJson[propertyName];
+          if(val < alarmArray[i]["min"] || val > alarmArray[i]["max"])
+          {
+            alarmObject["property"] = alarmArray[i]["property"];
+            alarmObject["value"] = val;
+            alarmObject["side"]=alarmArray[i]["side"];
+
+            TriggerAlarm(alarmObject);
+          }
+        break;
+      }
+  }
+  
+  String serializedAlarmObject;
+  alarmObject.printTo(serializedAlarmObject);
+  Serial.println("alarmobject:"+serializedAlarmObject);
+  
+}
+
+void TriggerAlarm(JsonObject& alarmObject){
+  
+  if(alarmObject["side"]=="ondevice")
+  {
+    Serial.println("device alarm triggered:");
+    alarmObject.printTo(Serial);
+  }
+  else if(alarmObject["side"]=="onserver")
+  {
+    Serial.println("server alarm");
+    String serializedAlarmObject;
+    alarmObject.printTo(serializedAlarmObject);
+    HttpRequestOld("/FireAlarm",serializedAlarmObject,"post");
+  }
+
+}
+
+void HttpRequest(String url,String json,String action){
+  if(action=="post")
+  {
+    //http.post(url,"Content-Type: application/json",json,
+    //  function(code, data)
+    //    if (code < 0) then
+   //       print("HTTP request failed")
+   //     else
+   //       print(code, data)
+   //     end
+   //   end);
+  }
+}
+
+
+void HttpRequestOld(String path,String json,String action){
+  
+if(WiFi.status()== WL_CONNECTED){
+
+        HTTPClient http;
+        http.begin(baseUrl+path);
+        http.addHeader("Content-Type", "application/json");
+        String token = GetDeviceToken();
+        http.addHeader("token", token);
+        int httpCode = 0;  
+        if(action=="post")
+        {
+          httpCode = http.POST(json);
+        }
+        
+        if(httpCode > 0) 
+        {
+          String payload = http.getString();
+          Serial.println(httpCode);   //Print HTTP return code
+          Serial.println(payload);    //Print request response payload
+        }
+        else 
+        {
+          Serial.println(httpCode);
+          Serial.println("[HTTP] failed, error: " + http.errorToString(httpCode));
+        }
+        http.end();
+        
+        }
+        else
+        {
+          Serial.println("Error in wfi connection");
+        }
+}
+
+String GetDeviceToken()
+{
+  return "A27E1A03-67A2-4032-B091-56DC6F52FE7F";
+}
