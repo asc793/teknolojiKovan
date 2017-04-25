@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AlarmController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
+    <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
