@@ -132,16 +132,22 @@
     <Compile Include="Controllers\API\AuthenticationController.cs" />
     <Compile Include="Controllers\API\DeviceController.cs" />
     <Compile Include="Controllers\API\EnvironmentController.cs" />
+    <Compile Include="Controllers\MVC\AccountController.cs" />
     <Compile Include="Controllers\MVC\DeviceController.cs" />
+    <Compile Include="Controllers\MVC\EnvironmentController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\API\ValueController.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
     <Compile Include="Domain\Device\DeviceDomain.cs" />
+    <Compile Include="Domain\Environment\DTOs\External\Environment.cs" />
+    <Compile Include="Domain\Environment\EnvironmentDomain.cs" />
     <Compile Include="Domain\Profile\DTOs\ProfileSave.cs" />
     <Compile Include="Domain\Profile\DTOs\PropertyRead.cs" />
     <Compile Include="Domain\Profile\ProfileDomain.cs" />
+    <Compile Include="Domain\Users\DTOs\External\Users.cs" />
+    <Compile Include="Domain\Users\UsersDomain.cs" />
     <Compile Include="Domain\Values\DTOs\External\Value.cs" />
     <Compile Include="Domain\Values\DTOs\ValueSaveDto.cs" />
     <Compile Include="Domain\Values\ValuesDomain.cs" />
@@ -183,7 +189,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Domain\Device\DTOs\" />
+    <Folder Include="Views\Account\" />
     <Folder Include="Views\Device\" />
+    <Folder Include="Views\Environment\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704252011056_init.resx">
