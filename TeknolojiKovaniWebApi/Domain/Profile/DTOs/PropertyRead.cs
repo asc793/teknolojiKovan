@@ -7,7 +7,7 @@ namespace TeknolojiKovaniWebApi.Domain.Profile.DTOs
 {
     public class PropertyRead
     {
-        public int PropertyID { get; set; }
-        public string PropertyName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
