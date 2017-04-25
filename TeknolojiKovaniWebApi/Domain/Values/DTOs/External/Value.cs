@@ -5,11 +5,11 @@ using System.Web;
 
 namespace TeknolojiKovaniWebApi.Domain.Values.DTOs.External
 {
-    public class Value
+    public class DeviceValue
     {
         public Guid DeviceId { get; set; }
         public string PropertyName { get; set; }
-        public string ValueString { get; set; }
+        public float Value { get; set; }
         public DateTime DataDeviceTime { get; set; }
     }
 }

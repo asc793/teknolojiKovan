@@ -20,6 +20,7 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public Users User { get; set; }
         public Environment Environment { get; set; }
         public int? EnvironmentId { get; set; }
+        public int DataSendInterval { get; set; }
 
     }
 }

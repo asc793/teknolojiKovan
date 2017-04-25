@@ -13,7 +13,7 @@ namespace TeknolojiKovaniWebApi.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704241941460_init"; }
+            get { return "201704252011056_init"; }
         }
         
         string IMigrationMetadata.Source

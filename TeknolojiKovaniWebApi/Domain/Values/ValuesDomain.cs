@@ -9,13 +9,13 @@ namespace TeknolojiKovaniWebApi.Domain.Values
 {
     public class ValuesDomain
     {
-        internal void SaveValue(Value value)
+        internal void SaveValue(DTOs.External.DeviceValue value)
         {
             tKovanContext ctx = new tKovanContext();
-            DeviceValue deviceValue = new DeviceValue();
+            Models.EntityClass.DeviceValue deviceValue = new Models.EntityClass.DeviceValue();
             deviceValue.DataDeviceTime = value.DataDeviceTime;
             deviceValue.DeviceId = value.DeviceId;
-            deviceValue.ValueString = value.ValueString;
+            deviceValue.Value= value.Value;
 
             deviceValue.DataServerTime = DateTime.Now;
             deviceValue.DataDeviceTime = DateTime.Now;

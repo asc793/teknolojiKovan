@@ -13,7 +13,7 @@ namespace TeknolojiKovaniWebApi.Controllers
     {
         [Route("Devices/{deviceId:guid}/Values/{propertyName}")]
         [HttpPost]
-        public IHttpActionResult SaveValue(Guid deviceId,string propertyName, Value value)
+        public IHttpActionResult SaveValue(Guid deviceId,string propertyName, DeviceValue value)
         {
             value.DeviceId = deviceId;
             value.PropertyName = propertyName;

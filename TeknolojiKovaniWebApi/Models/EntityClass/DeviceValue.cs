@@ -12,8 +12,13 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public Device Device { get; set; }
         public int PropertyId { get; set; }
         public Property Property { get; set; }
-        public string ValueString { get; set; }
+        public float Value { get; set; }
         public DateTime DataDeviceTime { get; set; }
         public DateTime DataServerTime { get; set; }
+        public int UserId { get; set; }
+        public Users Users{ get; set; }
+
+        public int EnvironmentId { get; set; }
+        public Environment Environment { get; set; }
     }
 }

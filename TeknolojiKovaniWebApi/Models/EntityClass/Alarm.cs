@@ -11,6 +11,11 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public Guid DeviceId { get; set; }
         public Device Device { get; set; }
         public int PropertyId { get; set; }
+        public Property Property { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
+        public int PinNo { get; set; }
+
         public AlarmType AlarmType { get; set; }
         
     }
