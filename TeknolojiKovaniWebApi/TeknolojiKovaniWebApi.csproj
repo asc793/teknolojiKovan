@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\site.css" />
     <Content Include="DeviceCode.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -116,6 +117,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\TeknolojiKovan - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\TeknolojiKovan - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -131,7 +134,6 @@
     <Compile Include="Controllers\API\AlarmController.cs" />
     <Compile Include="Controllers\API\AuthenticationController.cs" />
     <Compile Include="Controllers\API\DeviceController.cs" />
-    <Compile Include="Controllers\API\EnvironmentController.cs" />
     <Compile Include="Controllers\MVC\AccountController.cs" />
     <Compile Include="Controllers\MVC\DeviceController.cs" />
     <Compile Include="Controllers\MVC\EnvironmentController.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Domain\Values\DTOs\External\Value.cs" />
     <Compile Include="Domain\Values\DTOs\ValueSaveDto.cs" />
     <Compile Include="Domain\Values\ValuesDomain.cs" />
+    <Compile Include="Functions\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +185,9 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Environment\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\login2.cshtml" />
+    <Content Include="Views\Environment\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -191,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Device\" />
   </ItemGroup>
   <ItemGroup>

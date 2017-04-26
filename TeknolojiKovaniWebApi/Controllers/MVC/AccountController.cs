@@ -16,7 +16,6 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
         [HttpPost]
         public ActionResult Login(Domain.Users.DTOs.External.Users User)
         {
-
             try
             {
                 Domain.Users.UsersDomain ud = new Domain.Users.UsersDomain();
@@ -28,7 +27,7 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
                 cookie.Values["UserName"] = gUser.UserName.ToString();
                 this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
-                Session["KullaniciBilgileri"] = gUser;
+                //Session["KullaniciBilgileri"] = gUser;
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)

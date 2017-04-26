@@ -1,0 +1,24 @@
+﻿body {
+}
+
+.ortala{
+    margin-left:auto;
+    margin-right:auto;
+}
+.margint50px{
+    margin-top:50px;
+}
+.margint100px{
+    margin-top:100px;
+}
+
+.giris-ekrani td,.giris-ekrani th{
+    border-top:none !important;
+}
+.giris-ekrani-baslik{
+    font-weight:bold;
+    font-size:20px;
+}
+.padding10px{
+    padding:10px;
+}

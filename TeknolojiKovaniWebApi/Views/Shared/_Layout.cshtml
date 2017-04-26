@@ -7,12 +7,15 @@
 
 <html>
 <head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Teknoloji Kovanı - @ViewBag.Title</title>
+
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Teknoloji Kovanı - @ViewBag.Title</title>
+    <link href="~/Content/site.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -57,6 +60,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ayarlar <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index","Environment")">Ortam Ekle</a></li>
                             <li><a href="#">Alarm Ekle</a></li>
                             <li><a href="#">Cihaz Ekle</a></li>
                             <li><a href="#">Uç Birim Ekle</a></li>
