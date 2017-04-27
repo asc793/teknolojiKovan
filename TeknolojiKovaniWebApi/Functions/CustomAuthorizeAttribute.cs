@@ -24,21 +24,24 @@ namespace TeknolojiKovaniWebApi.Functions
             {
                 HttpCookie cookie = HttpContext.Current.Request.Cookies["UserCookie"];
                 int UserId = Convert.ToInt32(cookie.Values["Id"]);
-                if (allowedroles.Length > 0)
+                if (UserId != 0)
                 {
-                    foreach (var role in allowedroles)
+                    if (allowedroles.Length > 0)
                     {
-                        //var user = db.Kullanicilar.Where(m => m.kullaniciID == kullaniciBilgileri.kullaniciID && m.rol.rolAdi == role);
-                        var user = db.Users.Where(m => m.Id == UserId);
-                        if (user.Count() > 0)
+                        foreach (var role in allowedroles)
                         {
-                            authorize = true; /* return true if Entity has current user(active) with specific role */
+                            //var user = db.Kullanicilar.Where(m => m.kullaniciID == kullaniciBilgileri.kullaniciID && m.rol.rolAdi == role);
+                            var user = db.Users.Where(m => m.Id == UserId);
+                            if (user.Count() > 0)
+                            {
+                                authorize = true; /* return true if Entity has current user(active) with specific role */
+                            }
                         }
                     }
-                }
-                else
-                {
-                    authorize = true;
+                    else
+                    {
+                        authorize = true;
+                    }
                 }
 
             }
@@ -54,7 +57,7 @@ namespace TeknolojiKovaniWebApi.Functions
                 HttpCookie cookie = HttpContext.Current.Request.Cookies["UserCookie"];
                 UserId = Convert.ToInt32(cookie.Values["Id"]);
             }
-            if (UserId!=0)
+            if (UserId != 0)
             {
                 filterContext.Result = new EmptyResult();
                 filterContext.Result = new RedirectResult("~/Home/Index");
