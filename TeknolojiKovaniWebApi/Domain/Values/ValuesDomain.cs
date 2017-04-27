@@ -17,9 +17,8 @@ namespace TeknolojiKovaniWebApi.Domain.Values
         {
             tKovanContext ctx = new tKovanContext();
             Models.EntityClass.DeviceValue deviceValue = new Models.EntityClass.DeviceValue();
-            deviceValue.DataDeviceTime = value.DataDeviceTime;
-            deviceValue.DeviceId = value.DeviceId;
-            deviceValue.Value = value.Value;
+
+            deviceValue = Utilities.Map<TeknolojiKovaniWebApi.Domain.Values.DTOs.External.DeviceValue, TeknolojiKovaniWebApi.Models.EntityClass.DeviceValue>(value, deviceValue);
 
             deviceValue.DataServerTime = DateTime.Now;
             deviceValue.DataDeviceTime = DateTime.Now;
