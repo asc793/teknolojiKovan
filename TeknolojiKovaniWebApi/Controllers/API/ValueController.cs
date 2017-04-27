@@ -11,7 +11,7 @@ namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class ValueController : ApiController
     {
-        [Route("Devices/{deviceId:guid}/Values/{propertyName}")]
+        [Route("api/Devices/{deviceId:guid}/Values/{propertyName}")]
         [HttpPost]
         public IHttpActionResult SaveValue(Guid deviceId,string propertyName, DeviceValue value)
         {

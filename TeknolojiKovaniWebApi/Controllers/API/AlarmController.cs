@@ -10,7 +10,7 @@ namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class AlarmController : ApiController
     {
-        [Route("FireAlarm")]
+        [Route("api/FireAlarm")]
         [HttpPost]
         public IHttpActionResult FireAlarm(AlarmFireDto alarm)
         {
