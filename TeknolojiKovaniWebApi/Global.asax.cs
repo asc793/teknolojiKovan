@@ -19,7 +19,6 @@ namespace TeknolojiKovaniWebApi
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //GlobalConfiguration.Configuration.Filters.Add(new AuthenticationFilter());
         }
 
         

@@ -12,7 +12,7 @@ namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class DeviceController : ApiController
     {
-        [Route("Device/{deviceName}/Config")]
+        [Route("api/Device/{deviceName}/Config")]
         [HttpGet]
         public IHttpActionResult GetDeviceConfig()
         {

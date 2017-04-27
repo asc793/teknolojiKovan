@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using TeknolojiKovaniWebApi.App_Start;
 
 namespace TeknolojiKovaniWebApi
 {
@@ -22,6 +23,8 @@ namespace TeknolojiKovaniWebApi
             );
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            config.Filters.Add(new AuthenticationFilter());
         }
     }
 }

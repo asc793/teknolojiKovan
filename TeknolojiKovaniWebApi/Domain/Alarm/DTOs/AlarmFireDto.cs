@@ -7,6 +7,7 @@ namespace TeknolojiKovaniWebApi.Domain.Alarm.DTOs
 {
     public class AlarmFireDto
     {
+        public Guid DeviceKey { get; set; }
         public int AlarmId { get; set; }
         public string Side { get; set; }
         public string Property { get; set; }

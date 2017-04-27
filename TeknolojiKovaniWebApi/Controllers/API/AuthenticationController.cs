@@ -17,7 +17,7 @@ namespace TeknolojiKovaniWebApi.Controllers.API
         /// </summary>
         /// <param name="getToken"></param>
         /// <returns></returns>
-        [Route("Token")]
+        [Route("api/Token")]
         [HttpPost]
         public IHttpActionResult GetToken(GetToken getToken)
         {
