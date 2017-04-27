@@ -24,5 +24,21 @@ namespace TeknolojiKovaniWebApi.Domain.Environment
             List<DTOs.External.Environment> lstEnvironment = ctx.Environment.Where(x => x.UserId == UserId).ToList().Select(x => new DTOs.External.Environment { Id = x.Id, Name = x.Name }).ToList();
             return lstEnvironment;
         }
+
+        public bool DeleteEnvironment(int Id)
+        {
+            try
+            {
+                tKovanContext ctx = new tKovanContext();
+                TeknolojiKovaniWebApi.Models.EntityClass.Environment Environment = ctx.Environment.Where(x => x.Id == Id).FirstOrDefault();
+                ctx.Environment.Remove(Environment);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

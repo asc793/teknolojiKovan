@@ -56,6 +56,12 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             return RedirectToAction("Create");
         }
 
+        public ActionResult Delete(Guid Id)
+        {
+            Domain.Device.DeviceDomain dd = new Domain.Device.DeviceDomain();
+            dd.DeleteDevice(Id);
+            return RedirectToAction("Index");
+        }
 
     }
 }

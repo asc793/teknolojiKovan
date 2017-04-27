@@ -14,7 +14,7 @@
     <RootNamespace>TeknolojiKovaniWebApi</RootNamespace>
     <AssemblyName>TeknolojiKovaniWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -143,7 +143,6 @@
     <Compile Include="Controllers\MVC\EnvironmentController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\API\ValueController.cs" />
-    <Compile Include="Domain\Alarm\AlarmDomain.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />

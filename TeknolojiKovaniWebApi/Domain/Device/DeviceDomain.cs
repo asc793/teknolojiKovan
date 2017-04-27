@@ -47,13 +47,42 @@ namespace TeknolojiKovaniWebApi.Domain.Device
 
         public bool SaveDevice(DTOs.DeviceRead device)
         {
-            tKovanContext ctx = new tKovanContext();
-            TeknolojiKovaniWebApi.Models.EntityClass.Device eDevice = new Models.EntityClass.Device();
+            try
+            {
+                tKovanContext ctx = new tKovanContext();
+                TeknolojiKovaniWebApi.Models.EntityClass.Device eDevice = new Models.EntityClass.Device();
+                eDevice.CurrentToken = device.CurrentToken;
+                eDevice.DataSendInterval = device.DataSendInterval;
+                eDevice.EnvironmentId = device.EnvironmentId;
+                eDevice.MacNo = device.MacNo;
+                eDevice.Name = device.Name;
+                eDevice.ProfileId = device.ProfileId;
+                eDevice.UserId = device.UserId;
+                //eDevice.UserId = device.UserId;
+                ctx.Device.Add(eDevice);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception )
+            {
+                return false;   
+            }
             
-            //eDevice.UserId = device.UserId;
-            ctx.Device.Add(eDevice);
-            ctx.SaveChanges();
-            return true;
+        }
+        public bool DeleteDevice(Guid Id)
+        {
+            try
+            {
+                tKovanContext ctx = new tKovanContext();
+                TeknolojiKovaniWebApi.Models.EntityClass.Device eDevice = ctx.Device.Where(x => x.Id == Id).FirstOrDefault();
+                ctx.Device.Remove(eDevice);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

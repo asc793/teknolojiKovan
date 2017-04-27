@@ -43,5 +43,12 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             return RedirectToAction("Create");
 
         }
+
+        public ActionResult Delete(int Id)
+        {
+            Domain.Environment.EnvironmentDomain ed = new Domain.Environment.EnvironmentDomain();
+            ed.DeleteEnvironment(Id);
+            return RedirectToAction("Index");
+        }
     }
 }
