@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TeknolojiKovaniWebApi.Domain.Alarm;
 using TeknolojiKovaniWebApi.Domain.Alarm.DTOs;
 
 namespace TeknolojiKovaniWebApi.Controllers.API
@@ -14,6 +15,9 @@ namespace TeknolojiKovaniWebApi.Controllers.API
         [HttpPost]
         public IHttpActionResult FireAlarm(AlarmFireDto alarm)
         {
+            AlarmDomain alarmDomain = new AlarmDomain();
+            alarmDomain.FireAlarm(alarm);
+
             return Ok();
         }
     }
