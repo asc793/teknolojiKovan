@@ -14,7 +14,7 @@
     <RootNamespace>TeknolojiKovaniWebApi</RootNamespace>
     <AssemblyName>TeknolojiKovaniWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -145,6 +145,8 @@
     <Compile Include="Controllers\API\ValueController.cs" />
     <Compile Include="Domain\Alarm\AlarmDomain.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
+    <Compile Include="Domain\Alarm\DTOs\AlarmNotification.cs" />
+    <Compile Include="Domain\Alarm\DTOs\External\FireAlarm.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
     <Compile Include="Domain\Device\DeviceDomain.cs" />
@@ -168,6 +170,10 @@
     <Compile Include="Migrations\201704252107294_init.cs" />
     <Compile Include="Migrations\201704252107294_init.Designer.cs">
       <DependentUpon>201704252107294_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704282016586_deviceValue_added_firedalarmId.cs" />
+    <Compile Include="Migrations\201704282016586_deviceValue_added_firedalarmId.Designer.cs">
+      <DependentUpon>201704282016586_deviceValue_added_firedalarmId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EntityClass\Alarm.cs" />
@@ -212,6 +218,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704252107294_init.resx">
       <DependentUpon>201704252107294_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704282016586_deviceValue_added_firedalarmId.resx">
+      <DependentUpon>201704282016586_deviceValue_added_firedalarmId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

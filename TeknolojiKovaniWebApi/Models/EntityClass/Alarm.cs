@@ -15,7 +15,7 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public int Min { get; set; }
         public int Max { get; set; }
         public int PinNo { get; set; }
-
+        public string AlarmParameter { get; set; }
         public AlarmType AlarmType { get; set; }
         
     }

@@ -17,5 +17,6 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public DateTime DataServerTime { get; set; }
         public int UserId { get; set; }
         public int EnvironmentId { get; set; }
+        public int? AlarmId { get; set; }
     }
 }
