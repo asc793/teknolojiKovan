@@ -11,5 +11,6 @@ namespace TeknolojiKovaniWebApi.Domain.Values.DTOs.External
         public string PropertyName { get; set; }
         public decimal Value { get; set; }
         public DateTime DataDeviceTime { get; set; }
+        public int AlarmId { get; set; }
     }
 }

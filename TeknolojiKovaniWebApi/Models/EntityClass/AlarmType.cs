@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace TeknolojiKovaniWebApi.Models.EntityClass
 {
     public enum AlarmType
     {
-        Sms,Email,VoiceCall,OnDevice
+        OnDevice = 1
+        ,
+        Sms = 2
+        ,
+        Email = 3
+        , 
+        VoiceCall = 4
     }
 }
