@@ -1,0 +1,87 @@
+﻿@model TeknolojiKovaniWebApi.Domain.Alarm.DTOs.AlarmList
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AlarmList</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeviceId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DeviceId, new SelectList(ViewBag.Devices, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DeviceId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PropertyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Properties, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DeviceId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlarmType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="AlarmType" name="AlarmType" class="form-control">
+                    <option value="0">Seçiniz</option>
+                    <option value="1">OnDevice</option>
+                    <option value="2">Sms</option>
+                    <option value="3">Email</option>
+                    <option value="4">VoiceCall</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.AlarmType)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlarmParameter, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AlarmParameter)
+                @Html.ValidationMessageFor(model => model.AlarmParameter)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Max, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Max)
+                @Html.ValidationMessageFor(model => model.Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Min, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Min)
+                @Html.ValidationMessageFor(model => model.Min)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PinNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PinNo)
+                @Html.ValidationMessageFor(model => model.PinNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

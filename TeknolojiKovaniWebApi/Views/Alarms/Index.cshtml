@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TeknolojiKovaniWebApi.Domain.Alarm.DTOs.AlarmList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Yeni Ekle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlarmParameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlarmType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Max)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Min)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PinNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeviceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlarmParameter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlarmType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Max)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Min)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PinNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyId)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.Id}) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.Id})
+        </td>
+    </tr>
+}
+
+</table>

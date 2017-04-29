@@ -14,7 +14,7 @@
     <RootNamespace>TeknolojiKovaniWebApi</RootNamespace>
     <AssemblyName>TeknolojiKovaniWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -139,12 +139,14 @@
     <Compile Include="Controllers\API\AuthenticationController.cs" />
     <Compile Include="Controllers\API\DeviceController.cs" />
     <Compile Include="Controllers\MVC\AccountController.cs" />
+    <Compile Include="Controllers\MVC\AlarmsController.cs" />
     <Compile Include="Controllers\MVC\DevicesController.cs" />
     <Compile Include="Controllers\MVC\EnvironmentController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\API\ValueController.cs" />
     <Compile Include="Domain\Alarm\AlarmDomain.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmFireDto.cs" />
+    <Compile Include="Domain\Alarm\DTOs\AlarmList.cs" />
     <Compile Include="Domain\Alarm\DTOs\AlarmNotification.cs" />
     <Compile Include="Domain\Alarm\DTOs\External\FireAlarm.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
@@ -216,6 +218,8 @@
     <Content Include="Views\Environment\Create.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Devices\Create.cshtml" />
+    <Content Include="Views\Alarms\Index.cshtml" />
+    <Content Include="Views\Alarms\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
