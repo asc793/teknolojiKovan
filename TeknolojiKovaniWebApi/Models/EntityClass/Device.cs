@@ -21,6 +21,8 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
         public Environment Environment { get; set; }
         public int? EnvironmentId { get; set; }
         public int DataSendInterval { get; set; }
+        public int DataReadInterval { get; set; }
+        public ICollection<Alarm> Alarms { get; set; }
 
     }
 }

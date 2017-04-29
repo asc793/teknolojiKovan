@@ -6,17 +6,22 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using System.Web.Routing;
+using TeknolojiKovaniWebApi.Domain.Device;
+using TeknolojiKovaniWebApi.Domain.Device.DTOs;
 using TeknolojiKovaniWebApi.Models.EntityClass;
 
 namespace TeknolojiKovaniWebApi.Controllers.API
 {
     public class DeviceController : ApiController
     {
-        [Route("api/Device/{deviceName}/Config")]
+        [Route("api/Device/Config")]
         [HttpGet]
         public IHttpActionResult GetDeviceConfig()
         {
-            return Ok();
+            DeviceDomain deviceDomain = new DeviceDomain();
+            Guid currentDeviceId = StaticContext.GetCurrentDeviceId();
+            DeviceConfig config = deviceDomain.GetDeviceConfig(currentDeviceId);
+            return Ok(config);
         }
     }
 }

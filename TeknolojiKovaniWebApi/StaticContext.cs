@@ -8,19 +8,18 @@ namespace TeknolojiKovaniWebApi
 {
     public class StaticContext
     {
-        public static Guid? GetCurrentDeviceId()
+        public static Guid GetCurrentDeviceId()
         {
-            string token = HttpContext.Current.Request.Headers["token"];
-            if (string.IsNullOrEmpty(token))
+            DeviceRead device = GetCurrentDevice();
+            if (device == null)
             {
-                return null;
+                throw new Exception("Device token required");
             }
             else
             {
-                return Guid.Parse(token);
+                return device.Id;
             }
         }
-
         public static DeviceRead GetCurrentDevice()
         {
             string token = HttpContext.Current.Request.Headers["token"];
@@ -44,5 +43,6 @@ namespace TeknolojiKovaniWebApi
             }
 
         }
+
     }
 }

@@ -150,6 +150,7 @@
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
     <Compile Include="Domain\Device\DeviceDomain.cs" />
+    <Compile Include="Domain\Device\DTOs\DeviceConfig.cs" />
     <Compile Include="Domain\Device\DTOs\DeviceList.cs" />
     <Compile Include="Domain\Device\DTOs\DeviceRead.cs" />
     <Compile Include="Domain\Environment\DTOs\External\Environment.cs" />
@@ -175,6 +176,14 @@
     <Compile Include="Migrations\201704282016586_deviceValue_added_firedalarmId.Designer.cs">
       <DependentUpon>201704282016586_deviceValue_added_firedalarmId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704291044380_profileEntitiesChanged.cs" />
+    <Compile Include="Migrations\201704291044380_profileEntitiesChanged.Designer.cs">
+      <DependentUpon>201704291044380_profileEntitiesChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704291108053_sensorProfileRelationChanged.cs" />
+    <Compile Include="Migrations\201704291108053_sensorProfileRelationChanged.Designer.cs">
+      <DependentUpon>201704291108053_sensorProfileRelationChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EntityClass\Alarm.cs" />
     <Compile Include="Models\EntityClass\AlarmType.cs" />
@@ -183,6 +192,8 @@
     <Compile Include="Models\EntityClass\Profile.cs" />
     <Compile Include="Models\EntityClass\Property.cs" />
     <Compile Include="Models\EntityClass\PropertyType.cs" />
+    <Compile Include="Models\EntityClass\Sensor.cs" />
+    <Compile Include="Models\EntityClass\SensorProfile.cs" />
     <Compile Include="Models\EntityClass\Users.cs" />
     <Compile Include="Models\EntityClass\DeviceValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704282016586_deviceValue_added_firedalarmId.resx">
       <DependentUpon>201704282016586_deviceValue_added_firedalarmId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704291044380_profileEntitiesChanged.resx">
+      <DependentUpon>201704291044380_profileEntitiesChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704291108053_sensorProfileRelationChanged.resx">
+      <DependentUpon>201704291108053_sensorProfileRelationChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

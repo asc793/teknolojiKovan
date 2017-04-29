@@ -38,13 +38,64 @@ namespace TeknolojiKovaniWebApi.Domain.Device
             return deviceRead;
         }
 
+        public DeviceConfig GetDeviceConfig(Guid id)
+        {
+            tKovanContext ctx = new tKovanContext();
+
+            Models.EntityClass.Device device = ctx.Device
+                .Include("Alarms.Property")
+                .Include("Profile")
+                .Include("Profile.SensorProfiles.Sensor")
+                .Single(i => i.Id == id);
+
+            return new DeviceConfig()
+            {
+                Alarms = device.Alarms.Select(i => new TeknolojiKovaniWebApi.Domain.Device.DTOs.Alarm()
+                {
+                    Id = i.Id
+                    ,
+                    Level = i.Level
+                    ,
+                    Max = i.Max
+                    ,
+                    Min = i.Min
+                    ,
+                    PinNo = i.PinNo
+                    ,
+                    Property = i.Property.Name
+                    ,
+                    Side = (i.AlarmType == Models.EntityClass.AlarmType.OnDevice ? "ondevice" : "onserver")
+
+                }
+                ).ToArray()
+                ,
+                ReadInterval = device.DataReadInterval
+                ,
+                SendInterval = device.DataSendInterval
+                ,
+                SensorConfig = device.Profile.SensorProfiles.Select(i => new SensorConfig()
+                {
+                    PinNumber = i.PinNumber
+                    ,
+                    SensorType = (int)i.Sensor.SensorType
+                }).ToArray()
+                ,
+                Commands = GetDeviceCommands(device.Id)
+            };
+
+        }
+
+        private string[] GetDeviceCommands(Guid guid)
+        {
+            return new string[] { };
+        }
+
         public List<DeviceList> GetDeviceList(int UserId)
         {
             tKovanContext ctx = new tKovanContext();
-            List<DeviceList> device = ctx.Device.Where(x => x.UserId == UserId).ToList().Select(x=> new DeviceList { CurrentToken= x.CurrentToken, DataSendInterval= x.DataSendInterval, EnvironmentName = x.Environment==null?"":x.Environment.Name, Id= x.Id, Name= x.Name, MacNo= x.MacNo, ProfileName= x.Profile==null?"":x.Profile.Name, UserName = x.User==null?"":x.User.UserName  }).ToList();
+            List<DeviceList> device = ctx.Device.Where(x => x.UserId == UserId).ToList().Select(x => new DeviceList { CurrentToken = x.CurrentToken, DataSendInterval = x.DataSendInterval, EnvironmentName = x.Environment == null ? "" : x.Environment.Name, Id = x.Id, Name = x.Name, MacNo = x.MacNo, ProfileName = x.Profile == null ? "" : x.Profile.Name, UserName = x.User == null ? "" : x.User.UserName }).ToList();
             return device;
         }
-
         public bool SaveDevice(DTOs.DeviceRead device)
         {
             try
@@ -63,11 +114,11 @@ namespace TeknolojiKovaniWebApi.Domain.Device
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
-                return false;   
+                return false;
             }
-            
+
         }
         public bool DeleteDevice(Guid Id)
         {
