@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using AutoMapper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,7 @@ namespace TeknolojiKovaniWebApi
         {
             AutoMapper.Mapper.Initialize(i => i.CreateMap<T, K>());
 
-            return AutoMapper.Mapper.Map<T, K>(source);
+            return Mapper.Map<T, K>(source);
         }
     }
 }

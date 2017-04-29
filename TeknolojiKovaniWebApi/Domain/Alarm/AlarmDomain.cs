@@ -66,13 +66,16 @@ namespace TeknolojiKovaniWebApi.Domain.Alarm
             //return lstEnvironment;
             List<AlarmList> AlarmList = new List<AlarmList>();
             List<DeviceList> device = ctx.Device.Where(x => x.UserId == UserId).ToList().Select(x => new DeviceList { CurrentToken = x.CurrentToken, DataSendInterval = x.DataSendInterval, EnvironmentName = x.Environment == null ? "" : x.Environment.Name, Id = x.Id, Name = x.Name, MacNo = x.MacNo, ProfileName = x.Profile == null ? "" : x.Profile.Name, UserName = x.User == null ? "" : x.User.UserName }).ToList();
+
             foreach (DeviceList item in device)
             {
-                List<TeknolojiKovaniWebApi.Models.EntityClass.Alarm> DeviceAlarm = ctx.Alarm.Where(x => x.DeviceId == item.Id).ToList();
+                List<TeknolojiKovaniWebApi.Models.EntityClass.Alarm> DeviceAlarm = ctx.Alarm.Include("Device").Include("Property").Where(x => x.DeviceId == item.Id).ToList();
                 foreach (TeknolojiKovaniWebApi.Models.EntityClass.Alarm it in DeviceAlarm)
                 {
                     AlarmList dAlarm = new AlarmList();
                     dAlarm = Utilities.Map<TeknolojiKovaniWebApi.Models.EntityClass.Alarm,AlarmList>(it, dAlarm);
+                    dAlarm.DeviceName = it.Device.Name;
+                    dAlarm.PropertyName = it.Property.DisplayName;
                     AlarmList.Add(dAlarm);
                 }
             }

@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DeviceId)
+            @Html.DisplayNameFor(model => model.DeviceName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AlarmParameter)
@@ -31,7 +31,7 @@
             @Html.DisplayNameFor(model => model.PinNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PropertyId)
+            @Html.DisplayNameFor(model => model.PropertyName)
         </th>
         <th></th>
     </tr>
@@ -39,7 +39,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DeviceId)
+            @Html.DisplayFor(modelItem => item.DeviceName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AlarmParameter)
@@ -57,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.PinNo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PropertyId)
+            @Html.DisplayFor(modelItem => item.PropertyName)
         </td>
         <td>
             @Html.ActionLink("Güncelle", "Edit", new { id=item.Id}) |

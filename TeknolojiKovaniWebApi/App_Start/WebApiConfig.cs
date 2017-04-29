@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -12,6 +13,8 @@ namespace TeknolojiKovaniWebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+           
 
             // Web API routes
             config.MapHttpAttributeRoutes();
