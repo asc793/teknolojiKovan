@@ -50,5 +50,28 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             ed.DeleteEnvironment(Id);
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Edit(int Id)
+        {
+            Domain.Environment.EnvironmentDomain ed = new Domain.Environment.EnvironmentDomain();
+            return View(ed.GetEnvironmentById(Id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Domain.Environment.DTOs.External.Environment Environment)
+        {
+
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UserCookie"))
+            {
+                HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["UserCookie"];
+                int UserId = Convert.ToInt32(cookie.Values["Id"]);
+                Environment.UserId = UserId;
+                Domain.Environment.EnvironmentDomain ed = new Domain.Environment.EnvironmentDomain();
+                ed.UpdateEnvironment(Environment);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Edit");
+
+        }
     }
 }

@@ -23,6 +23,31 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             return View(AlarmList);
             
         }
+
+        public ActionResult Edit(int Id)
+        {
+            Domain.Device.DeviceDomain dd = new Domain.Device.DeviceDomain();
+            Domain.Alarm.DTOs.AlarmList Alarm = new Domain.Alarm.DTOs.AlarmList();
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UserCookie"))
+            {
+                HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["UserCookie"];
+                int UserId = Convert.ToInt32(cookie.Values["Id"]);
+                ViewBag.Devices = dd.GetDeviceList(UserId);
+                Domain.Profile.ProfileDomain pd = new Domain.Profile.ProfileDomain();
+                ViewBag.Property = pd.GetPropertyList();
+            }
+            Domain.Alarm.AlarmDomain ad = new Domain.Alarm.AlarmDomain();
+            return View(ad.GetAlarmById(Id));
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Domain.Alarm.DTOs.AlarmList AlarmList)
+        {
+            Domain.Alarm.AlarmDomain ad = new Domain.Alarm.AlarmDomain();
+            ad.UpdateAlarm(AlarmList);
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
             Domain.Device.DeviceDomain dd = new Domain.Device.DeviceDomain();
@@ -32,7 +57,7 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
                 int UserId = Convert.ToInt32(cookie.Values["Id"]);
                 ViewBag.Devices = dd.GetDeviceList(UserId);
                 Domain.Profile.ProfileDomain pd = new Domain.Profile.ProfileDomain();
-                ViewBag.Properties = pd.GetProfileList();
+                ViewBag.Properties = pd.GetPropertyList();
 
             }
             return View();

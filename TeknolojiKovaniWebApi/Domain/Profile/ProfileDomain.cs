@@ -26,8 +26,15 @@ namespace TeknolojiKovaniWebApi.Domain.Profile
         public List<ProfileRead> GetProfileList()
         {
             tKovanContext ctx = new tKovanContext();
-            List<ProfileRead> ProfilList = ctx.Profile.Select(x=> new ProfileRead {  Id=x.Id, Name= x.Name }).ToList();
+            List<ProfileRead> ProfilList = ctx.Profile.Select(x => new ProfileRead { Id = x.Id, Name = x.Name }).ToList();
             return ProfilList;
+        }
+
+        public List<PropertyRead> GetPropertyList()
+        {
+            tKovanContext ctx = new tKovanContext();
+            List<PropertyRead> PropertyReadList = ctx.Property.Select(x => new PropertyRead { Id = x.Id, Name = x.Name }).ToList();
+            return PropertyReadList;
         }
     }
 }

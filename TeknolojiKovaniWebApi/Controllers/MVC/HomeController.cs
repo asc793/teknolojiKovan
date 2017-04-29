@@ -13,6 +13,7 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
         }
     }

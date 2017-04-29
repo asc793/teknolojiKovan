@@ -48,6 +48,16 @@ namespace TeknolojiKovaniWebApi.Domain.Alarm
 
         }
 
+        public AlarmList GetAlarmById(int Id)
+        {
+
+            tKovanContext ctx = new tKovanContext();
+            TeknolojiKovaniWebApi.Models.EntityClass.Alarm Alarm= ctx.Alarm.Single(x => x.Id == Id);
+            AlarmList dAlarm = new AlarmList();
+            dAlarm = Utilities.Map<TeknolojiKovaniWebApi.Models.EntityClass.Alarm, AlarmList>(Alarm, dAlarm);
+            return dAlarm;
+        }
+
         public List<AlarmList> GetAlarmList(int UserId)
         {
 
@@ -78,6 +88,30 @@ namespace TeknolojiKovaniWebApi.Domain.Alarm
                 TeknolojiKovaniWebApi.Models.EntityClass.Alarm Alarm = new Models.EntityClass.Alarm();
                 Alarm = Utilities.Map<AlarmList, TeknolojiKovaniWebApi.Models.EntityClass.Alarm>(AlarmList, Alarm);
                 ctx.Alarm.Add(Alarm);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateAlarm(AlarmList AlarmList)
+        {
+            try
+            {
+                tKovanContext ctx = new tKovanContext();
+                TeknolojiKovaniWebApi.Models.EntityClass.Alarm Alarm = ctx.Alarm.Single(x => x.Id == AlarmList.Id);
+
+                Alarm.AlarmParameter = AlarmList.AlarmParameter;
+                Alarm.AlarmType = AlarmList.AlarmType;
+                Alarm.DeviceId = AlarmList.DeviceId;
+                Alarm.Level = AlarmList.Level;
+                Alarm.Max = AlarmList.Max;
+                Alarm.Min = AlarmList.Min;
+                Alarm.PinNo = AlarmList.PinNo;
+                Alarm.PropertyId = AlarmList.PropertyId;
                 ctx.SaveChanges();
                 return true;
             }

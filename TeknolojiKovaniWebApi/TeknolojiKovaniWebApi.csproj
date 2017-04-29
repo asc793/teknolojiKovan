@@ -163,6 +163,7 @@
     <Compile Include="Domain\Profile\ProfileDomain.cs" />
     <Compile Include="Domain\Users\DTOs\External\Users.cs" />
     <Compile Include="Domain\Users\UsersDomain.cs" />
+    <Compile Include="Domain\Values\DTOs\DeviceValues.cs" />
     <Compile Include="Domain\Values\DTOs\External\Value.cs" />
     <Compile Include="Domain\Values\DTOs\ValueSaveDto.cs" />
     <Compile Include="Domain\Values\ValuesDomain.cs" />
@@ -220,6 +221,9 @@
     <Content Include="Views\Devices\Create.cshtml" />
     <Content Include="Views\Alarms\Index.cshtml" />
     <Content Include="Views\Alarms\Create.cshtml" />
+    <Content Include="Views\Alarms\Edit.cshtml" />
+    <Content Include="Views\Environment\Edit.cshtml" />
+    <Content Include="Views\Devices\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

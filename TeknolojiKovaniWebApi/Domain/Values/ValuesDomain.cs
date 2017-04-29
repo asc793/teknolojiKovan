@@ -35,5 +35,11 @@ namespace TeknolojiKovaniWebApi.Domain.Values
             ctx.DeviceValue.Add(deviceValue);
             ctx.SaveChanges();
         }
+
+        public List<Values.DTOs.DeviceValues> GetAllDevice()
+        {
+            List<Values.DTOs.DeviceValues> lst = new List<DTOs.DeviceValues>();
+            return lst;
+        }
     }
 }
