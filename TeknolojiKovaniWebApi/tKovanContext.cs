@@ -17,6 +17,7 @@ namespace TeknolojiKovaniWebApi
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Property> Property { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<DeviceCommand> DeviceCommands { get; set; }
         
         public tKovanContext():base()
         {

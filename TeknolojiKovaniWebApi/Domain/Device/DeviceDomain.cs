@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TeknolojiKovaniWebApi.Domain.Device;
 using TeknolojiKovaniWebApi.Domain.Device.DTOs;
+using TeknolojiKovaniWebApi.Models.EntityClass;
 
 namespace TeknolojiKovaniWebApi.Domain.Device
 {
@@ -85,11 +86,6 @@ namespace TeknolojiKovaniWebApi.Domain.Device
 
         }
 
-        private string[] GetDeviceCommands(Guid guid)
-        {
-            return new string[] { };
-        }
-
         public List<DeviceList> GetDeviceList(int UserId)
         {
             tKovanContext ctx = new tKovanContext();
@@ -134,6 +130,22 @@ namespace TeknolojiKovaniWebApi.Domain.Device
             {
                 return false;
             }
+        }
+
+        internal string[] GetDeviceCommands(Guid currentDeviceId)
+        {
+            tKovanContext ctx = new tKovanContext();
+            IEnumerable<DeviceCommand> commands = ctx.DeviceCommands.Where(i => !i.Executed && i.DeviceId == currentDeviceId);
+
+            foreach (DeviceCommand command in commands)
+            {
+                command.ExecutionTime = DateTime.Now;
+                command.Executed = true;
+            }
+
+            ctx.SaveChanges();
+
+            return commands.Select(i => i.Command).ToArray();
         }
     }
 }

@@ -23,5 +23,15 @@ namespace TeknolojiKovaniWebApi.Controllers.API
             DeviceConfig config = deviceDomain.GetDeviceConfig(currentDeviceId);
             return Ok(config);
         }
+
+        [Route("api/Device/Commands")]
+        [HttpGet]
+        public IHttpActionResult GetDeviceCommands()
+        {
+            Guid currentDeviceId = StaticContext.GetCurrentDeviceId();
+            DeviceDomain deviceDomain = new DeviceDomain();
+            string[] commands = deviceDomain.GetDeviceCommands(currentDeviceId);
+            return Ok(commands);
+        }
     }
 }

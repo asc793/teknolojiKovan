@@ -8,15 +8,15 @@ namespace TeknolojiKovaniWebApi.Domain.Authentication
 {
     public class AuthenticationDomain
     {
-        public string GenerateDeviceToken(GetToken token)
+        public Guid GenerateDeviceToken(GetToken token)
         {
             tKovanContext ctx = new tKovanContext();
             Models.EntityClass.Device dev = ctx.Device.FirstOrDefault(i => i.Id.ToString() == token.DeviceGuid && i.MacNo == token.Macno);
 
             if (dev != null)
             {
-                string currentToken = Guid.NewGuid().ToString();
-                dev.CurrentToken = currentToken;
+                Guid currentToken = Guid.NewGuid();
+                dev.CurrentToken = currentToken.ToString();
                 ctx.SaveChanges();
                 return currentToken;
             }

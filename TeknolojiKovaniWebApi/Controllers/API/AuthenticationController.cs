@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TeknolojiKovaniWebApi.App_Start;
 using TeknolojiKovaniWebApi.Domain.Authentication;
 using TeknolojiKovaniWebApi.Domain.Authentication.DTOs;
 
@@ -19,11 +20,12 @@ namespace TeknolojiKovaniWebApi.Controllers.API
         /// <returns></returns>
         [Route("api/Token")]
         [HttpPost]
+        [DontValidate]
         public IHttpActionResult GetToken(GetToken getToken)
         {
             AuthenticationDomain authDomain = new AuthenticationDomain();
-            string token = authDomain.GenerateDeviceToken(getToken);
-            return Ok<string>(token);
+            Guid token = authDomain.GenerateDeviceToken(getToken);
+            return Ok<Guid>(token);
         }
     }
 }
