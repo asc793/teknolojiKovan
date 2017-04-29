@@ -62,6 +62,38 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             dd.DeleteDevice(Id);
             return RedirectToAction("Index");
         }
+        public ActionResult Edit(Guid Id)
+        {
+            Domain.Profile.ProfileDomain pd = new Domain.Profile.ProfileDomain();
+            Domain.Environment.EnvironmentDomain ed = new Domain.Environment.EnvironmentDomain();
+            int UserId = 0;
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UserCookie"))
+            {
+                HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["UserCookie"];
+                UserId = Convert.ToInt32(cookie.Values["Id"]);
+            }
 
+            ViewBag.Profiller = pd.GetProfileList();
+            ViewBag.Environment = ed.GetAll(UserId);
+
+            Domain.Device.DeviceDomain dd = new Domain.Device.DeviceDomain();
+            Domain.Device.DTOs.DeviceRead DeviceRead = dd.GetDeviceById(Id);
+
+            return View(DeviceRead);
+        }
+        [HttpPost]
+        public ActionResult Edit(Domain.Device.DTOs.DeviceRead device)
+        {
+            try
+            {
+                Domain.Device.DeviceDomain dd = new Domain.Device.DeviceDomain();
+                dd.UpdateDevice(device);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Edit");
+            }
+        }
     }
 }

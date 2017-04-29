@@ -98,7 +98,7 @@ namespace TeknolojiKovaniWebApi.Domain.Device
             {
                 tKovanContext ctx = new tKovanContext();
                 TeknolojiKovaniWebApi.Models.EntityClass.Device eDevice = new Models.EntityClass.Device();
-                eDevice.CurrentToken = device.CurrentToken;
+                //eDevice.CurrentToken = device.CurrentToken;
                 eDevice.DataSendInterval = device.DataSendInterval;
                 eDevice.EnvironmentId = device.EnvironmentId;
                 eDevice.MacNo = device.MacNo;
@@ -130,6 +130,40 @@ namespace TeknolojiKovaniWebApi.Domain.Device
             {
                 return false;
             }
+        }
+
+        public DeviceRead GetDeviceById(Guid Id)
+        {
+            tKovanContext ctx = new tKovanContext();
+            Models.EntityClass.Device device = ctx.Device.Single(x => x.Id== Id);
+            DeviceRead oDevice = new DeviceRead();
+            oDevice = Utilities.Map<Models.EntityClass.Device, DeviceRead>(device, oDevice);
+            return oDevice;
+        }
+
+        public bool UpdateDevice(DTOs.DeviceRead device)
+        {
+            try
+            {
+                tKovanContext ctx = new tKovanContext();
+                TeknolojiKovaniWebApi.Models.EntityClass.Device eDevice = ctx.Device.Single(x => x.Id == device.Id);
+                
+                eDevice.DataSendInterval = device.DataSendInterval;
+                eDevice.EnvironmentId = device.EnvironmentId;
+                eDevice.MacNo = device.MacNo;
+                eDevice.Name = device.Name;
+                eDevice.ProfileId = device.ProfileId;
+                //eDevice.UserId = device.UserId;
+                //eDevice.UserId = device.UserId;
+                //ctx.Device.Add(eDevice);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
         internal string[] GetDeviceCommands(Guid currentDeviceId)

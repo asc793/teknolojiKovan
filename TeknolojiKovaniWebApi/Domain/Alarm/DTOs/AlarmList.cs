@@ -12,6 +12,7 @@ namespace TeknolojiKovaniWebApi.Domain.Alarm.DTOs
         public int Id { get; set; }
         public Guid DeviceId { get; set; } //
         public int PropertyId { get; set; }//
+        public int Level { get; set; }
         public int Min { get; set; }//
         public int Max { get; set; }//
         public int PinNo { get; set; }//

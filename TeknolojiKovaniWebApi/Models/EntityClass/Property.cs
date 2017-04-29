@@ -8,6 +8,7 @@ namespace TeknolojiKovaniWebApi.Models.EntityClass
     public class Property
     {
         public int Id { get; set; }
+        public string DisplayName { get; set; }
         public Sensor Sensor { get; set; }
         public int SensorId { get; set; }
         public string Name { get; set; }

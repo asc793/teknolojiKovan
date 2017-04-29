@@ -1,19 +1,19 @@
 ﻿@model TeknolojiKovaniWebApi.Domain.Alarm.DTOs.AlarmList
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) 
+<h2>Edit</h2>
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>AlarmList</h4>
+        <h4>Alarm List</h4>
         <hr />
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
         @Html.ValidationSummary(true)
         <div class="form-group">
             @Html.LabelFor(model => model.DeviceId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PropertyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Properties, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
+                @Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Property, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PropertyId)
             </div>
         </div>
@@ -34,10 +34,35 @@
             <div class="col-md-10">
                 <select id="AlarmType" name="AlarmType" class="form-control">
                     <option value="0">Seçiniz</option>
-                    <option value="1">OnDevice</option>
-                    <option value="2">Sms</option>
-                    <option value="3">Email</option>
-                    <option value="4">VoiceCall</option>
+                    @switch (Model.AlarmType)
+                    {
+                        case TeknolojiKovaniWebApi.Models.EntityClass.AlarmType.OnDevice:
+                            <option value="1" selected>OnDevice</option>
+                            <option value="2">Sms</option>
+                            <option value="3">Email</option>
+                            <option value="4">VoiceCall</option>
+                            break;
+                        case TeknolojiKovaniWebApi.Models.EntityClass.AlarmType.Sms:
+                            <option value="1">OnDevice</option>
+                            <option value="2" selected>Sms</option>
+                            <option value="3">Email</option>
+                            <option value="4">VoiceCall</option>
+                            break;
+                        case TeknolojiKovaniWebApi.Models.EntityClass.AlarmType.Email:
+                            <option value="1">OnDevice</option>
+                            <option value="2">Sms</option>
+                            <option value="3" selected>Email</option>
+                            <option value="4">VoiceCall</option>
+                            break;
+                        case TeknolojiKovaniWebApi.Models.EntityClass.AlarmType.VoiceCall:
+                            <option value="1">OnDevice</option>
+                            <option value="2">Sms</option>
+                            <option value="3">Email</option>
+                            <option value="4" selected>VoiceCall</option>
+                            break;
+
+                    }
+                   
                 </select>
                 @Html.ValidationMessageFor(model => model.AlarmType)
             </div>
@@ -76,7 +101,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-default" />
+                <input type="submit" value="Güncelle" class="btn btn-default" />
             </div>
         </div>
     </div>
