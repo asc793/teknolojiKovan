@@ -6,3 +6,51 @@
 
 <h2>Dashboard</h2>
 
+<div class="col-lg-7 grid">
+    <table class="table">
+        <tr>
+            <th>DeviceName</th>
+            <th>PropertyName</th>
+            <th>Value</th>
+            <th>DataDeviceTime</th>
+        </tr>
+        @foreach (TeknolojiKovaniWebApi.Domain.Dashboard.DTOs.DeviceLastValue item in ViewBag.GetDeviceLastStatu)
+        {
+            <tr>
+                <td><a href="@Url.Action("DeviceChart","Home",new { id=item.Id})">@item.DeviceName</a></td>
+                <td><a href="@Url.Action("PropertyChart","Home",new { id=item.Id, PropertyId=item.PropertyId})">@item.PropertyName</a></td>
+                <td>@item.Value</td>
+                <td>@item.DataDeviceTime</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="col-lg-5 grid">
+    <table class="table">
+        <tr>
+            <th>DeviceName</th>
+            <th>PropertyName</th>
+            <th>Value</th>
+            <th>Alarm Durumu</th>
+        </tr>
+        @foreach (TeknolojiKovaniWebApi.Domain.Dashboard.DTOs.AlarmLogList item in ViewBag.AllAlarm)
+        {
+            <tr>
+                <td>@item.DeviceName</td>
+                <td>@item.PropertyName</td>
+                <td>@item.Value</td>
+                <td>
+                    @if(item.Value>item.Max)
+                    {
+                        <span class="glyphicon glyphicon-arrow-up red"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-arrow-down blue"></span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

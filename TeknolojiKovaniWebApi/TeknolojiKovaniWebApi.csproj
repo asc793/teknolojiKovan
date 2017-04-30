@@ -14,7 +14,7 @@
     <RootNamespace>TeknolojiKovaniWebApi</RootNamespace>
     <AssemblyName>TeknolojiKovaniWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -124,6 +124,11 @@
     <None Include="Properties\PublishProfiles\TeknolojiKovan - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\TeknolojiKovan - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\canvasjs\canvasjs.min.js" />
+    <Content Include="Scripts\canvasjs\jquery.canvasjs.min.js" />
+    <Content Include="Scripts\canvasjs\source\canvasjs.js" />
+    <Content Include="Scripts\canvasjs\source\excanvas.js" />
+    <Content Include="Scripts\canvasjs\source\jquery.canvasjs.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -151,6 +156,12 @@
     <Compile Include="Domain\Alarm\DTOs\External\FireAlarm.cs" />
     <Compile Include="Domain\Authentication\AuthenticationDomain.cs" />
     <Compile Include="Domain\Authentication\DTOs\GetToken.cs" />
+    <Compile Include="Domain\Dashboard\DashboardDomain.cs" />
+    <Compile Include="Domain\Dashboard\DTOs\AlarmLogList.cs" />
+    <Compile Include="Domain\Dashboard\DTOs\Data.cs" />
+    <Compile Include="Domain\Dashboard\DTOs\DataPoint.cs" />
+    <Compile Include="Domain\Dashboard\DTOs\DeviceLastValue.cs" />
+    <Compile Include="Domain\Dashboard\DTOs\DevicePropertyInfo.cs" />
     <Compile Include="Domain\Device\DeviceDomain.cs" />
     <Compile Include="Domain\Device\DTOs\DeviceConfig.cs" />
     <Compile Include="Domain\Device\DTOs\DeviceList.cs" />
@@ -229,6 +240,8 @@
     <Content Include="Views\Alarms\Edit.cshtml" />
     <Content Include="Views\Environment\Edit.cshtml" />
     <Content Include="Views\Devices\Edit.cshtml" />
+    <Content Include="Views\Home\DeviceChart.cshtml" />
+    <Content Include="Views\Home\PropertyChart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,9 +31,17 @@ namespace TeknolojiKovaniWebApi.Domain.Profile
         }
 
         public List<PropertyRead> GetPropertyList()
-        {
+        { 
             tKovanContext ctx = new tKovanContext();
             List<PropertyRead> PropertyReadList = ctx.Property.Select(x => new PropertyRead { Id = x.Id, Name = x.Name }).ToList();
+            return PropertyReadList;
+        }
+
+        public List<PropertyRead> GetPropertyListForDevice(Guid DeviceId)
+        {
+            tKovanContext ctx = new tKovanContext();
+            List<int> propertiesId = ctx.Alarm.Where(x => x.DeviceId == DeviceId).Select(x => x.PropertyId).ToList();
+            List<PropertyRead> PropertyReadList = ctx.Property.Where(x=> !propertiesId.Contains(x.Id)).Select(x => new PropertyRead { Id = x.Id, Name = x.Name }).ToList();
             return PropertyReadList;
         }
     }

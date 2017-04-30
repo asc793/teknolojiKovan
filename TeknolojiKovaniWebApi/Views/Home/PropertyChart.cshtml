@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "PropertyChart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/canvasjs/canvasjs.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "@Url.Action("PropertyChartGetValue")",
+            method: "post",
+            data: { Id: $("#DeviceId").val(), PropertyId: $("#PropertyId").val() },
+            success: function (veri) {
+                console.log(veri);
+                if (veri) {
+                    veribas(veri);
+                }
+            }
+        });
+
+        function veribas(datap) {
+            var chart = new CanvasJS.Chart("report",
+            {
+
+                title: {
+                    text: "Cihaz/Property Raporu",
+                    fontSize: 30
+                },
+                animationEnabled: true,
+
+                axisX: {
+                    title: "Zaman",
+                    gridColor: "Silver",
+                    tickColor: "silver",
+                    valueFormatString: ""
+
+                },
+                toolTip: {
+                    shared: true,
+                    contentFormatter: function (e) {
+                        var content = " ";
+                        for (var i = 0; i < e.entries.length; i++) {
+                            console.log(e);
+
+
+                            content += e.entries[i].dataSeries.name + " " + "<strong>" + e.entries[i].dataPoint.y + "</strong>";
+
+                            content += "<br/>";
+                        }
+
+
+                        return content;
+                    }
+                },
+                theme: "theme2",
+                axisY: {
+                    title: "",
+                    gridColor: "Silver",
+                    tickColor: "silver",
+                    valueFormatString: " ",
+                    tickLength: 0
+                },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
+                data: datap,
+                legend: {
+                    cursor: "pointer",
+                    itemclick: function (e) {
+                        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                            e.dataSeries.visible = false;
+                        }
+                        else {
+                            e.dataSeries.visible = true;
+                        }
+                        chart.render();
+                    }
+                }
+            });
+
+            chart.render();
+        }
+    });
+</script>
+<input type="hidden" id="DeviceId" value="@ViewBag.DeviceId" />
+<input type="hidden" id="PropertyId" value="@ViewBag.PropertyId" />
+
+<h2>Property Chart</h2>
+
+
+<div class="col-lg-12">
+    <div id="report">
+
+    </div>
+</div>

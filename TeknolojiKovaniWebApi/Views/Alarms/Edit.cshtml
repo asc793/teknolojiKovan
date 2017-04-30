@@ -4,8 +4,32 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Edit</h2>
+<script>
+    $(document).ready(function () {
+        $("#DeviceId").change(function () {
+            $.ajax({
+                url: "@Url.Action("GetPropertyIdForDeviceId")",
+                method: "post",
+                data: { DeviceId: $("#DeviceId").val() },
+                success: function (veri) {
+                    if(veri)
+                    {
+                        $("#PropertyId").html("");
+                        if (veri.length == 0) {
+                            alert("Cihazın Tüm Propertylerine Alarm Tanımlanmıştır.")
+                            return;
+                        }
+                        $("#PropertyId").append("<option value=0>Seçiniz</option>");
+                        for (var i = 0; i < veri.length; i++) {
+                            $("#PropertyId").append("<option value=" + veri[i].Id + ">" + veri[i].Name + "</option>");
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+<h2>Güncelle</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,7 +49,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PropertyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Property, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
+                <select id="PropertyId" name="PropertyId" class="form-control">
+
+                </select>
+                @*@Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Property, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.PropertyId)
             </div>
         </div>

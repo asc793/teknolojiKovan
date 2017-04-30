@@ -40,6 +40,19 @@ namespace TeknolojiKovaniWebApi.Controllers.MVC
             return View(ad.GetAlarmById(Id));
 
         }
+        public ActionResult GetPropertyIdForDeviceId(Guid DeviceId)
+        {
+            try
+            {
+                Domain.Profile.ProfileDomain pd = new Domain.Profile.ProfileDomain();
+                var sonuc = pd.GetPropertyListForDevice(DeviceId);
+                return Json(sonuc, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpPost]
         public ActionResult Edit(Domain.Alarm.DTOs.AlarmList AlarmList)
         {

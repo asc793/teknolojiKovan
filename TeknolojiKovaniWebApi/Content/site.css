@@ -22,3 +22,17 @@
 .padding10px{
     padding:10px;
 }
+.red{
+    color:red;
+}
+.blue{
+    color:blue;
+}
+.grid{
+    height:500px;
+    overflow-y:scroll;
+}
+#report{
+    height:400px;
+    width:100%;
+}
