@@ -1,7 +1,6 @@
 ﻿@model TeknolojiKovaniWebApi.Domain.Alarm.DTOs.AlarmList
 
 @{
-    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
@@ -29,25 +28,24 @@
         });
     });
 </script>
-<h2>Ekle</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AlarmList</h4>
+        <h4>Alarm Ekle</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.DeviceId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Cihaz", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.DeviceId, new SelectList(ViewBag.Devices, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DeviceId)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.PropertyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Özellik", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.DropDownListFor(model => model.PropertyId, new SelectList(ViewBag.Properties, "Id", "Name"), "Seçiniz", htmlAttributes: new { @Class = "form-control" })*@
                 <select name="PropertyId" id="PropertyId" class="form-control">
@@ -57,7 +55,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.AlarmType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Alarm Türü", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select id="AlarmType" name="AlarmType" class="form-control">
                     <option value="0">Seçiniz</option>
@@ -70,7 +68,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.AlarmParameter, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Alarm Parametresi", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AlarmParameter)
                 @Html.ValidationMessageFor(model => model.AlarmParameter)

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<TeknolojiKovaniWebApi.Domain.Environment.DTOs.External.Environment>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName("Ortam Adı")
         </th>
         <th></th>
     </tr>

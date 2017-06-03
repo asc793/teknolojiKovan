@@ -27,7 +27,7 @@ namespace TeknolojiKovaniWebApi.Domain.Dashboard
                                 tDeviceLastValue.Id = itemDevice.Id;
                                 tDeviceLastValue.DeviceName = itemDevice.Name;
                                 tDeviceLastValue.PropertyId = itemProperty.Id;
-                                tDeviceLastValue.PropertyName = itemProperty.Name;
+                                tDeviceLastValue.PropertyName = itemProperty.DisplayName;
                                 Models.EntityClass.DeviceValue DeviceLastValue = ctx.DeviceValue.Where(x => x.PropertyId == itemProperty.Id && x.DeviceId == itemDevice.Id).OrderByDescending(x => x.DataDeviceTime).FirstOrDefault();
                                 if (DeviceLastValue != null)
                                 {
@@ -85,7 +85,7 @@ namespace TeknolojiKovaniWebApi.Domain.Dashboard
                                     DTOs.AlarmLogList AlarmLog = new DTOs.AlarmLogList();
                                     AlarmLog.Id = itemDevice.Id;
                                     AlarmLog.DeviceName = itemDevice.Name;
-                                    AlarmLog.PropertyName = itemProperty.Name;
+                                    AlarmLog.PropertyName = itemProperty.DisplayName;
                                     AlarmLog.PropertyId = itemProperty.Id;
                                     AlarmLog.Value = DeviceLastValue.Value;
                                     AlarmLog.DataDeviceTime = DeviceLastValue.DataDeviceTime;

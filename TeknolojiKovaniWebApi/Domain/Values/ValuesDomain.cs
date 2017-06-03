@@ -20,8 +20,8 @@ namespace TeknolojiKovaniWebApi.Domain.Values
 
             deviceValue = Utilities.Map<TeknolojiKovaniWebApi.Domain.Values.DTOs.External.DeviceValue, TeknolojiKovaniWebApi.Models.EntityClass.DeviceValue>(value, deviceValue);
 
-            deviceValue.DataServerTime = DateTime.Now;
-            deviceValue.DataDeviceTime = DateTime.Now;
+            deviceValue.DataServerTime = DateTime.UtcNow.AddHours(3);
+            deviceValue.DataDeviceTime = DateTime.UtcNow.AddHours(3);
 
             ProfileDomain profileDomain = new ProfileDomain();
             PropertyRead property = profileDomain.GetProperty(value.PropertyName);

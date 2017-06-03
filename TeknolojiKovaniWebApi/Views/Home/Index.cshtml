@@ -9,10 +9,10 @@
 <div class="col-lg-7 grid">
     <table class="table">
         <tr>
-            <th>DeviceName</th>
-            <th>PropertyName</th>
-            <th>Value</th>
-            <th>DataDeviceTime</th>
+            <th>Cihaz</th>
+            <th>Özellik</th>
+            <th>Değer</th>
+            <th>Zaman</th>
         </tr>
         @foreach (TeknolojiKovaniWebApi.Domain.Dashboard.DTOs.DeviceLastValue item in ViewBag.GetDeviceLastStatu)
         {
@@ -29,10 +29,10 @@
 <div class="col-lg-5 grid">
     <table class="table">
         <tr>
-            <th>DeviceName</th>
-            <th>PropertyName</th>
-            <th>Value</th>
-            <th>Alarm Durumu</th>
+            <th>Cihaz</th>
+            <th>Özellik</th>
+            <th>Değer</th>
+            <th>Alarm</th>
         </tr>
         @foreach (TeknolojiKovaniWebApi.Domain.Dashboard.DTOs.AlarmLogList item in ViewBag.AllAlarm)
         {

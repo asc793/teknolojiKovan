@@ -1,22 +1,19 @@
 ﻿@model TeknolojiKovaniWebApi.Domain.Environment.DTOs.External.Environment
 
 @{
-    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <input type="hidden" id="Id" name="Id" value="@Model.Id" />
     <div class="form-horizontal">
-        <h4>Environment</h4>
+        <h4>Ortam Düzenle</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Ortam Adı", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)

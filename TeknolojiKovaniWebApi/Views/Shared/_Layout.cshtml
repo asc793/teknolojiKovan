@@ -9,7 +9,7 @@
 <head>
 
     <meta name="viewport" content="width=device-width" />
-    <title>Teknoloji Kovanı - @ViewBag.Title</title>
+    <title>TeknolojiKovan - @ViewBag.Title</title>
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Teknoloji Kovanı</a>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">TeknolojiKovan</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,13 +56,12 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>*@
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Kovanlar</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ayarlar <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Yönetim <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Devices")">Uç Birim(Cihaz) Ekle</a></li>
-                            <li><a href="@Url.Action("Index","Environment")">Ortam Ekle</a></li>
-                            <li><a href="@Url.Action("Index","Alarms")">Alarm Ekle</a></li>
+                            <li><a href="@Url.Action("Index","Environment")">Ortamlar</a></li>
+                            <li><a href="@Url.Action("Index","Devices")">Cihazlar</a></li>
+                            <li><a href="@Url.Action("Index","Alarms")">Alarmlar</a></li>
                             @*<li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>

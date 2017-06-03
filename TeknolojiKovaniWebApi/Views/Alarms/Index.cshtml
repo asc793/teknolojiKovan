@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<TeknolojiKovaniWebApi.Domain.Alarm.DTOs.AlarmList>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DeviceName)
+            @Html.DisplayName("Cihaz")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AlarmParameter)
+            @Html.DisplayName("Alarm Parametresi")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AlarmType)
+            @Html.DisplayName("Alarm Türü")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Max)
@@ -31,7 +30,7 @@
             @Html.DisplayNameFor(model => model.PinNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PropertyName)
+            @Html.DisplayName("Özellik")
         </th>
         <th></th>
     </tr>

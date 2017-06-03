@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<TeknolojiKovaniWebApi.Domain.Device.DTOs.DeviceList>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Cihaz Listesi</h2>
 
 <p>
     @Html.ActionLink("Yeni Ekle", "Create")
@@ -13,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName("Cihaz Adı")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MacNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EnvironmentName)
+            @Html.DisplayName("Bulunduğu Ortam")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProfileName)
+            @Html.DisplayName("Profil")
         </th>
         <th></th>
     </tr>

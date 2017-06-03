@@ -1,18 +1,16 @@
 ﻿@model TeknolojiKovaniWebApi.Domain.Environment.DTOs.External.Environment
 
 @{
-    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Environment</h4>
+        <h4>Ortam Ekle</h4>
+
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
