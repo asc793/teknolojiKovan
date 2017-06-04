@@ -78,7 +78,13 @@ namespace TeknolojiKovaniWebApi.Domain.Dashboard
                         {
                             foreach (Models.EntityClass.Property itemProperty in itemSensorProfile.Sensor.Properties)
                             {
-                                List<Models.EntityClass.DeviceValue> DeviceLastValues = ctx.DeviceValue.Where(x => x.PropertyId == itemProperty.Id && x.DeviceId == itemDevice.Id && x.AlarmId != 0).OrderByDescending(x => x.DataDeviceTime).Take(5).ToList();
+                                List<Models.EntityClass.DeviceValue> DeviceLastValues = ctx.DeviceValue.Where(x =>
+                                    x.PropertyId == itemProperty.Id
+                                    && x.DeviceId == itemDevice.Id
+                                    && ctx.Alarm.Select(i => i.Id).Contains(x.AlarmId.Value)
+                                    ).OrderByDescending(x => x.DataDeviceTime)
+                                    .Take(5)
+                                    .ToList();
 
                                 foreach (Models.EntityClass.DeviceValue DeviceLastValue in DeviceLastValues)
                                 {
@@ -146,7 +152,7 @@ namespace TeknolojiKovaniWebApi.Domain.Dashboard
                 int sayac = 0;
                 foreach (Models.EntityClass.DeviceValue DeviceValue in DeviceValues)
                 {
-                    
+
                     DTOs.DataPoint dp = new DTOs.DataPoint();
                     dp.x = sayac;
                     dp.y = DeviceValue.Value;
@@ -177,7 +183,7 @@ namespace TeknolojiKovaniWebApi.Domain.Dashboard
             Data.dataPoints = new List<DTOs.DataPoint>();
 
             List<Models.EntityClass.DeviceValue> DeviceValues = ctx.DeviceValue.Where(x => x.DeviceId == DeviceId && x.PropertyId == PropertyId).ToList();
-            int sayac=0;
+            int sayac = 0;
             foreach (Models.EntityClass.DeviceValue DeviceValue in DeviceValues)
             {
                 DTOs.DataPoint dp = new DTOs.DataPoint();
